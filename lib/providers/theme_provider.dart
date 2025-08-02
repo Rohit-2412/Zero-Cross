@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import '../services/local_storage_service.dart';
 
 class ThemeProvider extends ChangeNotifier {
   bool _isDarkMode = false;
 
   bool get isDarkMode => _isDarkMode;
 
+  ThemeProvider() {
+    _loadTheme();
+  }
+
+  void _loadTheme() {
+    _isDarkMode = LocalStorageService.getThemeMode();
+    notifyListeners();
+  }
+
   void toggleTheme() {
     _isDarkMode = !_isDarkMode;
+    LocalStorageService.saveThemeMode(_isDarkMode);
     notifyListeners();
   }
 

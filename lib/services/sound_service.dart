@@ -1,12 +1,18 @@
 import 'package:flutter/services.dart';
+import 'local_storage_service.dart';
 
 class SoundService {
   static bool _soundEnabled = true;
 
   static bool get soundEnabled => _soundEnabled;
 
+  static void init() {
+    _soundEnabled = LocalStorageService.getSoundEnabled();
+  }
+
   static void toggleSound() {
     _soundEnabled = !_soundEnabled;
+    LocalStorageService.saveSoundEnabled(_soundEnabled);
   }
 
   static Future<void> playTapSound() async {

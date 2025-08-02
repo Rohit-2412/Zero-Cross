@@ -5,7 +5,10 @@ import 'package:provider/provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../core/constants.dart';
 import '../../models/game_state.dart';
+import '../../services/local_storage_service.dart';
 import 'game_screen.dart';
+import 'single_player_game_screen.dart';
+import 'stats_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -146,6 +149,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 gradient: const LinearGradient(colors: [Color(0xFFf093fb), Color(0xFFf5576c)]),
                                 isSmallScreen: screenSize.width < AppConstants.mobileBreakpoint,
                               ),
+
+                              const SizedBox(height: 20),
+
+                              _buildGameModeButton(
+                                context: context,
+                                title: 'Statistics',
+                                subtitle: 'View your game stats',
+                                icon: Icons.bar_chart,
+                                onPressed: () => _viewStats(context),
+                                gradient: const LinearGradient(colors: [Color(0xFF4facfe), Color(0xFF00f2fe)]),
+                                isSmallScreen: screenSize.width < AppConstants.mobileBreakpoint,
+                              ),
                             ],
                           ),
                         ),
@@ -258,12 +273,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   void _startSinglePlayer(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const GameScreen(mode: GameMode.singlePlayer)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const SinglePlayerGameScreen()));
   }
 
   void _startMultiplayer(BuildContext context) {
     log('Multiplayer mode selected - navigating to game screen with default names');
-    // Navigate directly to multiplayer game with default names
+
+    // Use default names or handle custom name input
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -271,5 +287,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             (context) => GameScreen(mode: GameMode.multiplayer, player1Name: player1Name, player2Name: player2Name),
       ),
     );
+  }
+
+  void _viewStats(BuildContext context) {
+    final gameStats = LocalStorageService.getGameStatistics();
+    Navigator.push(context, MaterialPageRoute(builder: (context) => StatsScreen(gameStats: gameStats)));
   }
 }
