@@ -34,18 +34,18 @@ class GameTimer extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Theme.of(context).colorScheme.surface, Theme.of(context).colorScheme.surface.withOpacity(0.8)],
+          colors: [Theme.of(context).colorScheme.surface, Theme.of(context).colorScheme.surface.withValues(alpha: 0.8)],
         ),
         borderRadius: BorderRadius.circular(45),
         // Enhanced shadow
         boxShadow: [
           BoxShadow(
-            color: isUrgent ? Colors.red.withOpacity(0.3) : Theme.of(context).primaryColor.withOpacity(0.2),
+            color: isUrgent ? Colors.red.withValues(alpha: 0.3) : Theme.of(context).primaryColor.withValues(alpha: 0.2),
             blurRadius: isUrgent ? 20 : 15,
             offset: const Offset(0, 5),
             spreadRadius: isUrgent ? 3 : 2,
           ),
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 2)),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 2)),
         ],
       ),
       child: Stack(
@@ -58,7 +58,7 @@ class GameTimer extends StatelessWidget {
               value: progress,
               strokeWidth: 8,
               strokeCap: StrokeCap.round,
-              backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.3),
+              backgroundColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.3),
               valueColor: AlwaysStoppedAnimation<Color>(isUrgent ? Colors.red : Theme.of(context).primaryColor),
             ),
           ),
@@ -75,7 +75,7 @@ class GameTimer extends StatelessWidget {
                   color: isUrgent ? Colors.red : Theme.of(context).colorScheme.onSurface,
                   shadows: [
                     Shadow(
-                      color: (isUrgent ? Colors.red : Theme.of(context).primaryColor).withOpacity(0.3),
+                      color: (isUrgent ? Colors.red : Theme.of(context).primaryColor).withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -97,18 +97,23 @@ class GameTimer extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColor.withOpacity(0.8)],
+          colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColor.withValues(alpha: 0.8)],
         ),
         borderRadius: BorderRadius.circular(30),
         // Enhanced shadow
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).primaryColor.withOpacity(0.3),
+            color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
             blurRadius: 15,
             offset: const Offset(0, 6),
             spreadRadius: 2,
           ),
-          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 20, offset: const Offset(0, 10), spreadRadius: 3),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+            spreadRadius: 3,
+          ),
         ],
       ),
       child: Material(

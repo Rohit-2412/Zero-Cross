@@ -180,9 +180,9 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> with Ti
                   duration: const Duration(milliseconds: 300),
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
-                    color: _getDifficultyColor(selectedDifficulty).withOpacity(0.1),
+                    color: _getDifficultyColor(selectedDifficulty).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: _getDifficultyColor(selectedDifficulty).withOpacity(0.3)),
+                    border: Border.all(color: _getDifficultyColor(selectedDifficulty).withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -191,7 +191,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> with Ti
                         duration: const Duration(milliseconds: 200),
                         child: Icon(
                           _getDifficultyIcon(selectedDifficulty),
-                          key: ValueKey('${selectedDifficulty}_${hasGameStarted}'),
+                          key: ValueKey('${selectedDifficulty}_$hasGameStarted'),
                           color: _getDifficultyColor(selectedDifficulty),
                           size: hasGameStarted ? 16 : 20,
                         ),
@@ -218,7 +218,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> with Ti
                             duration: const Duration(milliseconds: 200),
                             child: Icon(
                               Icons.edit,
-                              key: ValueKey('edit_${hasGameStarted}'),
+                              key: ValueKey('edit_$hasGameStarted'),
                               color: _getDifficultyColor(selectedDifficulty),
                               size: hasGameStarted ? 14 : 16,
                             ),
@@ -297,7 +297,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> with Ti
           return Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.purple.withOpacity(0.1),
+              color: Colors.purple.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: Colors.purple, width: 1.5),
             ),
@@ -330,7 +330,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> with Ti
       duration: const Duration(milliseconds: 300),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.red.withOpacity(0.1),
+        color: Colors.red.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.red, width: 1.5),
       ),
@@ -575,7 +575,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> with Ti
             'Choose your difficulty and start playing!',
             style: GoogleFonts.varelaRound(
               fontSize: 16,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
             ),
             textAlign: TextAlign.center,
           ),

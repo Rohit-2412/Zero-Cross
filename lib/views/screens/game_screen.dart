@@ -89,7 +89,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColor.withOpacity(0.8)],
+              colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColor.withValues(alpha: 0.8)],
             ),
           ),
         ),
@@ -98,7 +98,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           Container(
             margin: EdgeInsets.only(right: UIKit.padding(12)),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(UIKit.radius(12)),
             ),
             child: IconButton(
@@ -124,8 +124,8 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
             end: Alignment.bottomCenter,
             colors: [
               Theme.of(context).scaffoldBackgroundColor,
-              Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
-              Theme.of(context).primaryColor.withOpacity(0.05),
+              Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.8),
+              Theme.of(context).primaryColor.withValues(alpha: 0.05),
             ],
           ),
         ),
@@ -151,7 +151,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                         SizedBox(height: UIKit.gap(16)),
 
                         // Game Board - Fixed size to prevent overflow
-                        Container(
+                        SizedBox(
                           height: UIKit.responsive<double>(
                             mobile: UIKit.minDimension(100),
                             tablet: UIKit.minDimension(60),
@@ -185,7 +185,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
 
   Widget _buildCurrentPlayerIndicator(GameController controller) {
     // Always return a container with fixed height to prevent layout shifts
-    return Container(
+    return SizedBox(
       height: UIKit.responsive<double>(mobile: UIKit.height(8), tablet: UIKit.height(7), desktop: UIKit.height(6)),
       child: Center(child: _buildIndicatorContent(controller)),
     );
@@ -210,20 +210,20 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [AppConstants.aiColor.withOpacity(0.15), AppConstants.aiColor.withOpacity(0.08)],
+                colors: [AppConstants.aiColor.withValues(alpha: 0.15), AppConstants.aiColor.withValues(alpha: 0.08)],
               ),
               borderRadius: BorderRadius.circular(UIKit.radius(24)),
-              border: Border.all(color: AppConstants.aiColor.withOpacity(0.3), width: 2),
+              border: Border.all(color: AppConstants.aiColor.withValues(alpha: 0.3), width: 2),
               // Enhanced glow effect
               boxShadow: [
                 BoxShadow(
-                  color: AppConstants.aiColor.withOpacity(0.2),
+                  color: AppConstants.aiColor.withValues(alpha: 0.2),
                   blurRadius: UIKit.elevation(15),
                   offset: const Offset(0, 5),
                   spreadRadius: 2,
                 ),
                 BoxShadow(
-                  color: AppConstants.aiColor.withOpacity(0.1),
+                  color: AppConstants.aiColor.withValues(alpha: 0.1),
                   blurRadius: UIKit.elevation(30),
                   offset: const Offset(0, 10),
                   spreadRadius: 5,
@@ -238,7 +238,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                   width: UIKit.iconSize(24),
                   height: UIKit.iconSize(24),
                   decoration: BoxDecoration(
-                    color: AppConstants.aiColor.withOpacity(0.1),
+                    color: AppConstants.aiColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(UIKit.radius(12)),
                   ),
                   child: Center(
@@ -315,20 +315,20 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [currentPlayerColor.withOpacity(0.15), currentPlayerColor.withOpacity(0.08)],
+                colors: [currentPlayerColor.withValues(alpha: 0.15), currentPlayerColor.withValues(alpha: 0.08)],
               ),
               borderRadius: BorderRadius.circular(UIKit.radius(24)),
-              border: Border.all(color: currentPlayerColor.withOpacity(0.4), width: 2),
+              border: Border.all(color: currentPlayerColor.withValues(alpha: 0.4), width: 2),
               // Enhanced glow effect for current player
               boxShadow: [
                 BoxShadow(
-                  color: currentPlayerColor.withOpacity(0.25),
+                  color: currentPlayerColor.withValues(alpha: 0.25),
                   blurRadius: UIKit.elevation(20),
                   offset: const Offset(0, 8),
                   spreadRadius: 3,
                 ),
                 BoxShadow(
-                  color: currentPlayerColor.withOpacity(0.1),
+                  color: currentPlayerColor.withValues(alpha: 0.1),
                   blurRadius: UIKit.elevation(40),
                   offset: const Offset(0, 16),
                   spreadRadius: 6,
@@ -343,9 +343,9 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                   width: UIKit.iconSize(40),
                   height: UIKit.iconSize(40),
                   decoration: BoxDecoration(
-                    color: currentPlayerColor.withOpacity(0.15),
+                    color: currentPlayerColor.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(UIKit.radius(20)),
-                    border: Border.all(color: currentPlayerColor.withOpacity(0.4), width: 2),
+                    border: Border.all(color: currentPlayerColor.withValues(alpha: 0.4), width: 2),
                   ),
                   child: Center(
                     child: Text(
@@ -441,19 +441,19 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Theme.of(context).colorScheme.surface, Theme.of(context).colorScheme.surface.withOpacity(0.8)],
+          colors: [Theme.of(context).colorScheme.surface, Theme.of(context).colorScheme.surface.withValues(alpha: 0.8)],
         ),
         borderRadius: BorderRadius.circular(UIKit.radius(24)),
         // Enhanced shadow for depth
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: UIKit.elevation(20),
             offset: const Offset(0, 8),
             spreadRadius: 2,
           ),
           BoxShadow(
-            color: Theme.of(context).primaryColor.withOpacity(0.05),
+            color: Theme.of(context).primaryColor.withValues(alpha: 0.05),
             blurRadius: UIKit.elevation(40),
             offset: const Offset(0, 16),
             spreadRadius: 4,
@@ -483,13 +483,13 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                 end: Alignment.bottomRight,
                 colors: [
                   Theme.of(context).colorScheme.primaryContainer,
-                  Theme.of(context).colorScheme.primaryContainer.withOpacity(0.8),
+                  Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.8),
                 ],
               ),
               borderRadius: BorderRadius.circular(UIKit.radius(16)),
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                  color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                   blurRadius: UIKit.elevation(8),
                   offset: const Offset(0, 4),
                 ),
@@ -530,13 +530,13 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Theme.of(context).colorScheme.surface, Theme.of(context).colorScheme.surface.withOpacity(0.8)],
+          colors: [Theme.of(context).colorScheme.surface, Theme.of(context).colorScheme.surface.withValues(alpha: 0.8)],
         ),
         borderRadius: BorderRadius.circular(UIKit.radius(24)),
         // Enhanced shadow
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: UIKit.elevation(20),
             offset: const Offset(0, 8),
             spreadRadius: 2,
@@ -565,9 +565,9 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                             key: ValueKey(controller.gameState.result),
                             padding: EdgeInsets.symmetric(horizontal: UIKit.padding(16), vertical: UIKit.padding(12)),
                             decoration: BoxDecoration(
-                              color: _getResultColor(controller).withOpacity(0.1),
+                              color: _getResultColor(controller).withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(UIKit.radius(16)),
-                              border: Border.all(color: _getResultColor(controller).withOpacity(0.3), width: 2),
+                              border: Border.all(color: _getResultColor(controller).withValues(alpha: 0.3), width: 2),
                             ),
                             child: Text(
                               _getResultText(controller),
@@ -611,12 +611,16 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Theme.of(context).colorScheme.surface, Theme.of(context).colorScheme.surface.withOpacity(0.8)],
+            colors: [
+              Theme.of(context).colorScheme.surface,
+              Theme.of(context).colorScheme.surface.withValues(alpha: 0.8),
+            ],
           ),
           borderRadius: BorderRadius.circular(UIKit.radius(45)),
           boxShadow: [
             BoxShadow(
-              color: isUrgent ? Colors.red.withOpacity(0.3) : Theme.of(context).primaryColor.withOpacity(0.2),
+              color:
+                  isUrgent ? Colors.red.withValues(alpha: 0.3) : Theme.of(context).primaryColor.withValues(alpha: 0.2),
               blurRadius: UIKit.elevation(isUrgent ? 20 : 15),
               offset: const Offset(0, 5),
               spreadRadius: isUrgent ? 3 : 2,
@@ -632,7 +636,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                 value: progress,
                 strokeWidth: 8,
                 strokeCap: StrokeCap.round,
-                backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.3),
+                backgroundColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.3),
                 valueColor: AlwaysStoppedAnimation<Color>(isUrgent ? Colors.red : Theme.of(context).primaryColor),
               ),
             ),
@@ -655,12 +659,12 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColor.withOpacity(0.8)],
+            colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColor.withValues(alpha: 0.8)],
           ),
           borderRadius: BorderRadius.circular(UIKit.radius(30)),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).primaryColor.withOpacity(0.3),
+              color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
               blurRadius: UIKit.elevation(15),
               offset: const Offset(0, 6),
               spreadRadius: 2,
@@ -722,12 +726,12 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                   ? LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [color.withOpacity(0.15), color.withOpacity(0.08)],
+                    colors: [color.withValues(alpha: 0.15), color.withValues(alpha: 0.08)],
                   )
                   : LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Colors.grey.withOpacity(0.05), Colors.grey.withOpacity(0.02)],
+                    colors: [Colors.grey.withValues(alpha: 0.05), Colors.grey.withValues(alpha: 0.02)],
                   ),
           borderRadius: BorderRadius.circular(UIKit.radius(20)),
           // Enhanced border with glow effect
@@ -737,13 +741,13 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
               isActive
                   ? [
                     BoxShadow(
-                      color: color.withOpacity(0.3),
+                      color: color.withValues(alpha: 0.3),
                       blurRadius: UIKit.elevation(15),
                       offset: const Offset(0, 5),
                       spreadRadius: 2,
                     ),
                     BoxShadow(
-                      color: color.withOpacity(0.1),
+                      color: color.withValues(alpha: 0.1),
                       blurRadius: UIKit.elevation(30),
                       offset: const Offset(0, 10),
                       spreadRadius: 5,
@@ -751,7 +755,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                   ]
                   : [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withValues(alpha: 0.05),
                       blurRadius: UIKit.elevation(8),
                       offset: const Offset(0, 2),
                     ),
@@ -770,7 +774,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                     style: GoogleFonts.varelaRound(
                       fontSize: UIKit.scaledFont(isActive ? 16 : 14),
                       fontWeight: isActive ? FontWeight.w700 : FontWeight.w600,
-                      color: isActive ? color.withOpacity(0.9) : Theme.of(context).colorScheme.onSurface,
+                      color: isActive ? color.withValues(alpha: 0.9) : Theme.of(context).colorScheme.onSurface,
                     ),
                     child: Text(name, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, maxLines: 1),
                   ),
@@ -786,7 +790,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                       decoration: BoxDecoration(
                         color:
                             _canEditNames()
-                                ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+                                ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.1)
                                 : Colors.transparent,
                         borderRadius: BorderRadius.circular(UIKit.radius(8)),
                       ),
@@ -796,7 +800,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                         color:
                             _canEditNames()
                                 ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+                                : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
                       ),
                     ),
                   ),
@@ -825,9 +829,9 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                       desktop: UIKit.width(8),
                     ),
                     decoration: BoxDecoration(
-                      color: color.withOpacity(0.1),
+                      color: color.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(UIKit.radius(25)),
-                      border: Border.all(color: color.withOpacity(0.3), width: 2),
+                      border: Border.all(color: color.withValues(alpha: 0.3), width: 2),
                     ),
                     child: Center(
                       child: Text(
@@ -853,7 +857,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                       style: GoogleFonts.varelaRound(
                         fontSize: UIKit.scaledFont(10),
                         fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                     SizedBox(height: UIKit.gap(2)),
@@ -861,9 +865,12 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                       duration: const Duration(milliseconds: 300),
                       padding: EdgeInsets.symmetric(horizontal: UIKit.padding(12), vertical: UIKit.padding(6)),
                       decoration: BoxDecoration(
-                        color: isActive ? color.withOpacity(0.1) : Theme.of(context).colorScheme.surface,
+                        color: isActive ? color.withValues(alpha: 0.1) : Theme.of(context).colorScheme.surface,
                         borderRadius: BorderRadius.circular(UIKit.radius(12)),
-                        border: Border.all(color: isActive ? color.withOpacity(0.3) : Colors.transparent, width: 1),
+                        border: Border.all(
+                          color: isActive ? color.withValues(alpha: 0.3) : Colors.transparent,
+                          width: 1,
+                        ),
                       ),
                       child: Text(
                         '$score',

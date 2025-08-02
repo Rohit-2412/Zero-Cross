@@ -6,6 +6,7 @@ import '../../services/sound_service.dart';
 import '../widgets/game_board.dart';
 import '../widgets/score_board.dart';
 import '../widgets/game_dialogs.dart';
+import 'customization_screen.dart';
 
 class MultiplayerGameScreen extends StatefulWidget {
   const MultiplayerGameScreen({super.key});
@@ -80,7 +81,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> with Tick
       appBar: AppBar(
         title: Text(
           hasGameStarted
-              ? 'Playing - ${player1Name.length > 8 ? player1Name.substring(0, 8) + "..." : player1Name} vs ${player2Name.length > 8 ? player2Name.substring(0, 8) + "..." : player2Name}'
+              ? 'Playing - ${player1Name.length > 8 ? "${player1Name.substring(0, 8)}..." : player1Name} vs ${player2Name.length > 8 ? "${player2Name.substring(0, 8)}..." : player2Name}'
               : 'Multiplayer Game',
           style: GoogleFonts.varelaRound(fontWeight: FontWeight.w600),
         ),
@@ -93,6 +94,13 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> with Tick
               tooltip: 'Edit Player Names',
               onPressed: () {
                 _showPlayerNamesDialog();
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.palette),
+              tooltip: 'Customization',
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const CustomizationScreen()));
               },
             ),
           ],
@@ -132,9 +140,9 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> with Tick
                   duration: const Duration(milliseconds: 300),
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Theme.of(context).colorScheme.primary.withOpacity(0.3)),
+                    border: Border.all(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -162,7 +170,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> with Tick
                             duration: const Duration(milliseconds: 200),
                             child: Icon(
                               Icons.edit,
-                              key: ValueKey('edit_${hasGameStarted}'),
+                              key: ValueKey('edit_$hasGameStarted'),
                               color: Theme.of(context).colorScheme.primary,
                               size: hasGameStarted ? 14 : 16,
                             ),
@@ -232,7 +240,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> with Tick
       duration: const Duration(milliseconds: 300),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
-        color: oTurn ? Colors.red.withOpacity(0.1) : Colors.blue.withOpacity(0.1),
+        color: oTurn ? Colors.red.withValues(alpha: 0.1) : Colors.blue.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: oTurn ? Colors.red : Colors.blue, width: 2),
       ),
@@ -298,7 +306,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> with Tick
             'Ready to play? Let the best player win!',
             style: GoogleFonts.varelaRound(
               fontSize: 16,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
             ),
             textAlign: TextAlign.center,
           ),

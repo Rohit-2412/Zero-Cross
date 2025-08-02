@@ -27,7 +27,9 @@ class GameOverDialog extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 10))],
+          boxShadow: [
+            BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 10)),
+          ],
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -36,7 +38,7 @@ class GameOverDialog extends StatelessWidget {
             Container(
               width: 80,
               height: 80,
-              decoration: BoxDecoration(color: _getResultColor(result).withOpacity(0.1), shape: BoxShape.circle),
+              decoration: BoxDecoration(color: _getResultColor(result).withValues(alpha: 0.1), shape: BoxShape.circle),
               child: Icon(_getResultIcon(result), size: 40, color: _getResultColor(result)),
             ),
 
@@ -59,7 +61,7 @@ class GameOverDialog extends StatelessWidget {
               _getResultSubtitle(result),
               style: GoogleFonts.inter(
                 fontSize: isSmallScreen ? 14 : 16,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
               textAlign: TextAlign.center,
             ),
@@ -172,7 +174,9 @@ class _PlayerNameDialogState extends State<PlayerNameDialog> {
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 10))],
+          boxShadow: [
+            BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 10)),
+          ],
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

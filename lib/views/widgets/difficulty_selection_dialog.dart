@@ -32,7 +32,10 @@ class _DifficultySelectionDialogState extends State<DifficultySelectionDialog> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Theme.of(context).colorScheme.surface, Theme.of(context).colorScheme.surface.withOpacity(0.8)],
+            colors: [
+              Theme.of(context).colorScheme.surface,
+              Theme.of(context).colorScheme.surface.withValues(alpha: 0.8),
+            ],
           ),
         ),
         child: Column(
@@ -61,7 +64,7 @@ class _DifficultySelectionDialogState extends State<DifficultySelectionDialog> {
               'Select your challenge level to start the game',
               style: GoogleFonts.varelaRound(
                 fontSize: 14,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
               textAlign: TextAlign.center,
             ),
@@ -124,16 +127,16 @@ class _DifficultySelectionDialogState extends State<DifficultySelectionDialog> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isSelected ? color.withOpacity(0.15) : Colors.transparent,
+          color: isSelected ? color.withValues(alpha: 0.15) : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: isSelected ? color : color.withOpacity(0.3), width: isSelected ? 3 : 1),
+          border: Border.all(color: isSelected ? color : color.withValues(alpha: 0.3), width: isSelected ? 3 : 1),
         ),
         child: Row(
           children: [
             // Icon
             Container(
               padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(color: color.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+              decoration: BoxDecoration(color: color.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(12)),
               child: Icon(_getDifficultyIcon(difficulty), color: color, size: 28),
             ),
 
@@ -162,7 +165,7 @@ class _DifficultySelectionDialogState extends State<DifficultySelectionDialog> {
                     difficulty.description,
                     style: GoogleFonts.varelaRound(
                       fontSize: 14,
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                 ],

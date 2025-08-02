@@ -124,7 +124,7 @@ class UIKit {
   }
 
   /// Get text scale factor for better readability
-  static double get textScaleFactor => _mediaQueryData.textScaleFactor;
+  static double get textScaleFactor => _mediaQueryData.textScaler.scale(1.0);
 }
 
 /// Extension for convenient access to UIKit methods

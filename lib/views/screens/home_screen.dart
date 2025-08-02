@@ -9,6 +9,7 @@ import '../../services/local_storage_service.dart';
 import 'game_screen.dart';
 import 'single_player_game_screen.dart';
 import 'stats_screen.dart';
+import 'customization_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -85,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           style: GoogleFonts.fredoka(
                             fontSize: screenSize.width < 400 ? 28 : 32,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).colorScheme.onBackground,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                       ),
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 style: GoogleFonts.inter(
                                   fontSize: screenSize.width < AppConstants.mobileBreakpoint ? 18 : 24,
                                   fontWeight: FontWeight.w600,
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.8),
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -159,6 +160,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 icon: Icons.bar_chart,
                                 onPressed: () => _viewStats(context),
                                 gradient: const LinearGradient(colors: [Color(0xFF4facfe), Color(0xFF00f2fe)]),
+                                isSmallScreen: screenSize.width < AppConstants.mobileBreakpoint,
+                              ),
+
+                              const SizedBox(height: 20),
+
+                              _buildGameModeButton(
+                                context: context,
+                                title: 'Customization',
+                                subtitle: 'Personalize your game',
+                                icon: Icons.palette,
+                                onPressed: () => _openCustomization(context),
+                                gradient: const LinearGradient(colors: [Color(0xFFa8edea), Color(0xFFfed6e3)]),
                                 isSmallScreen: screenSize.width < AppConstants.mobileBreakpoint,
                               ),
                             ],
@@ -223,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       height: 80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, offset: const Offset(0, 4))],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 10, offset: const Offset(0, 4))],
       ),
       child: Material(
         borderRadius: BorderRadius.circular(20),
@@ -240,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(icon, color: Colors.white, size: 24),
@@ -257,7 +270,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),
                         ),
                         const SizedBox(height: 2),
-                        Text(subtitle, style: GoogleFonts.inter(fontSize: 14, color: Colors.white.withOpacity(0.8))),
+                        Text(
+                          subtitle,
+                          style: GoogleFonts.inter(fontSize: 14, color: Colors.white.withValues(alpha: 0.8)),
+                        ),
                       ],
                     ),
                   ),
@@ -292,5 +308,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void _viewStats(BuildContext context) {
     final gameStats = LocalStorageService.getGameStatistics();
     Navigator.push(context, MaterialPageRoute(builder: (context) => StatsScreen(gameStats: gameStats)));
+  }
+
+  void _openCustomization(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const CustomizationScreen()));
   }
 }

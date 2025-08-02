@@ -35,6 +35,28 @@ class GameStatistics {
   void resetDifficulty(AIDifficulty difficulty) {
     _stats[difficulty]!.reset();
   }
+
+  // Helper methods for overall statistics
+  int getTotalGames() {
+    return _stats.values.fold(0, (sum, stats) => sum + stats.totalGames);
+  }
+
+  int getTotalPlayerWins() {
+    return _stats.values.fold(0, (sum, stats) => sum + stats.playerWins);
+  }
+
+  int getTotalAiWins() {
+    return _stats.values.fold(0, (sum, stats) => sum + stats.aiWins);
+  }
+
+  int getTotalDraws() {
+    return _stats.values.fold(0, (sum, stats) => sum + stats.draws);
+  }
+
+  double getOverallWinRate() {
+    final totalGames = getTotalGames();
+    return totalGames > 0 ? (getTotalPlayerWins() / totalGames) * 100 : 0.0;
+  }
 }
 
 class DifficultyStats {

@@ -75,9 +75,9 @@ class StatsDialog extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +96,7 @@ class StatsDialog extends StatelessWidget {
                 '${stats.totalGames} games',
                 style: GoogleFonts.varelaRound(
                   fontSize: 14,
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -123,7 +123,7 @@ class StatsDialog extends StatelessWidget {
               style: GoogleFonts.varelaRound(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.8),
               ),
             ),
           ] else ...[
@@ -132,7 +132,7 @@ class StatsDialog extends StatelessWidget {
               'No games played yet',
               style: GoogleFonts.varelaRound(
                 fontSize: 14,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ],
@@ -147,7 +147,10 @@ class StatsDialog extends StatelessWidget {
         Text(value.toString(), style: GoogleFonts.varelaRound(fontSize: 20, fontWeight: FontWeight.w700, color: color)),
         Text(
           label,
-          style: GoogleFonts.varelaRound(fontSize: 12, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7)),
+          style: GoogleFonts.varelaRound(
+            fontSize: 12,
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+          ),
         ),
       ],
     );

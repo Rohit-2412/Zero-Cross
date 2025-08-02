@@ -80,7 +80,7 @@ class _PlayerScore extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         decoration: BoxDecoration(
-          color: isActive ? color.withOpacity(0.1) : Colors.transparent,
+          color: isActive ? color.withValues(alpha: 0.1) : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
           border: isActive ? Border.all(color: color, width: 2) : null,
         ),
@@ -142,11 +142,11 @@ class _ScoreDivider extends StatelessWidget {
             style: GoogleFonts.varelaRound(
               fontSize: isSmallScreen ? 12 : 14,
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 4),
-          Container(width: 2, height: 30, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3)),
+          Container(width: 2, height: 30, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3)),
         ],
       ),
     );
